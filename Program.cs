@@ -2,6 +2,7 @@
 using DSharpPlus.CommandsNext;
 using DSharpPlus.EventArgs;
 using GroguBot.config;
+using Microsoft.Extensions.Configuration;
 
 
 namespace GroguBot
@@ -9,8 +10,8 @@ namespace GroguBot
     internal class Program
     {
         private static DiscordClient Client { get; set; }
-
         private static CommandsNextExtension Commands { get; set; }
+
         static async Task Main(string[] args)
         {
             var jsonReader = new JSONReader();

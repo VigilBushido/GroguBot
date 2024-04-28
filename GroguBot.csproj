@@ -11,6 +11,7 @@
     <PackageReference Include="DSharpPlus.CommandsNext" Version="4.4.6" />
     <PackageReference Include="DSharpPlus.Interactivity" Version="4.4.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
   </ItemGroup>
 
 </Project>
