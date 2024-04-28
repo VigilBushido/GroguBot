@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Threading.Tasks;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using DSharpPlus.Entities;
 
 namespace GroguBot.commands
 {
@@ -48,6 +49,25 @@ namespace GroguBot.commands
             }
 
             return value;
+        }
+
+        [Command("embed")]
+        public async Task EmbedMessage(CommandContext ctx)
+        {
+            /*             var message = new DiscordMessageBuilder()
+                            .AddEmbed(new DiscordEmbedBuilder()
+                                .WithTitle("Breaking Notice")
+                                .WithDescription($"Alert {ctx.User.Username}, you have been notified of an action"));
+
+                        await ctx.Channel.SendMessageAsync(message); */
+            var message = new DiscordEmbedBuilder
+            {
+                Title = "Breaking Notice",
+                Description = $"Alert {ctx.User.Username}, you have been notified of an action",
+                Color = DiscordColor.IndianRed
+            };
+
+            await ctx.Channel.SendMessageAsync(embed: message);
         }
     }
 }

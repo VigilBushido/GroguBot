@@ -10,8 +10,8 @@ namespace GroguBot
 {
     internal class Program
     {
-        private static DiscordClient Client { get; set; }
-        private static CommandsNextExtension Commands { get; set; }
+        private static DiscordClient? Client { get; set; }
+        private static CommandsNextExtension? Commands { get; set; }
 
         static async Task Main(string[] args)
         {
@@ -21,7 +21,7 @@ namespace GroguBot
             var discordConfig = new DiscordConfiguration()
             {
                 Intents = DiscordIntents.All,
-                Token = jsonReader.token,
+                Token = jsonReader.Token,
                 TokenType = TokenType.Bot,
                 AutoReconnect = true
             };
@@ -32,7 +32,7 @@ namespace GroguBot
 
             var commandsConfig = new CommandsNextConfiguration()
             {
-                StringPrefixes = new string[] { jsonReader.prefix },
+                StringPrefixes = new string[] { jsonReader.Prefix },
                 EnableMentionPrefix = true,
                 EnableDms = true,
                 EnableDefaultHelp = false
