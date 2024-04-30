@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
+using GroguBot.util;
 
 namespace GroguBot.commands
 {
@@ -68,6 +69,30 @@ namespace GroguBot.commands
             };
 
             await ctx.Channel.SendMessageAsync(embed: message);
+        }
+
+        [Command("cardgame")]
+        public async Task CardGame(CommandContext ctx)
+        {
+            var userCard = new CardSystem();
+
+            var userCardEmbed = new DiscordEmbedBuilder
+            {
+                Title = $"Your card is {userCard.SelectedCard}",
+                Color = DiscordColor.Lilac
+            };
+
+            await ctx.Channel.SendMessageAsync(embed: userCardEmbed);
+
+            var botCard = new CardSystem();
+
+            var botCardEmbed = new DiscordEmbedBuilder
+            {
+                Title = $"The Bot drew a {botCard.SelectedCard}",
+                Color = DiscordColor.Orange
+            };
+
+            await ctx.Channel.SendMessageAsync(embed: botCardEmbed);
         }
     }
 }
