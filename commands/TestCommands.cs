@@ -7,6 +7,7 @@ using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using GroguBot.util;
+using Microsoft.VisualBasic;
 
 namespace GroguBot.commands
 {
@@ -93,6 +94,27 @@ namespace GroguBot.commands
             };
 
             await ctx.Channel.SendMessageAsync(embed: botCardEmbed);
+
+            if (userCard.SelectedNumber > botCard.SelectedNumber)
+            {
+                //User Wins 
+                var winMessage = new DiscordEmbedBuilder
+                {
+                    Title = "Congratulations, you WIN!!",
+                    Color = DiscordColor.SapGreen
+                };
+                await ctx.Channel.SendMessageAsync(embed: winMessage);
+            }
+            else
+            {
+                //Bot Wins 
+                var loseMessage = new DiscordEmbedBuilder
+                {
+                    Title = "You Lost the Game!!!",
+                    Color = DiscordColor.Red
+                };
+                await ctx.Channel.SendMessageAsync(embed: loseMessage);
+            }
         }
     }
 }
