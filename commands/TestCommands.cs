@@ -8,6 +8,8 @@ using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using GroguBot.util;
 using Microsoft.VisualBasic;
+using DSharpPlus.Interactivity;
+using DSharpPlus.Interactivity.Extensions;
 
 namespace GroguBot.commands
 {
@@ -16,7 +18,14 @@ namespace GroguBot.commands
         [Command("test")]
         public async Task BasicCommand(CommandContext ctx)
         {
-            await ctx.Channel.SendMessageAsync($"Grogu Instantiated.. I am at your command {ctx.User.Username}");
+            var interactivity = Program.Client.GetInteractivity();
+
+            var messageToRetrieve = await interactivity.WaitForMessageAsync(message => message.Content == "activate");
+            if (messageToRetrieve.Result.Content == "activate")
+            {
+                await ctx.Channel.SendMessageAsync($"{ctx.User.Username} started a new environment");
+            }
+            //await ctx.Channel.SendMessageAsync($"Grogu Instantiated.. I am at your command {ctx.User.Username}");
         }
 
 
