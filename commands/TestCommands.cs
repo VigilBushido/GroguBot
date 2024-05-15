@@ -10,12 +10,13 @@ using GroguBot.util;
 using Microsoft.VisualBasic;
 using DSharpPlus.Interactivity;
 using DSharpPlus.Interactivity.Extensions;
+using DSharpPlus.EventArgs;
 
 namespace GroguBot.commands
 {
     public class TestCommands : BaseCommandModule
     {
-        [Command("test")]
+        [Command("interactive")]
         public async Task BasicCommand(CommandContext ctx)
         {
             var interactivity = Program.Client.GetInteractivity();
@@ -26,6 +27,18 @@ namespace GroguBot.commands
                 await ctx.Channel.SendMessageAsync($"{ctx.User.Username} started a new environment");
             }
             //await ctx.Channel.SendMessageAsync($"Grogu Instantiated.. I am at your command {ctx.User.Username}");
+        }
+
+        [Command("awake")]
+        public async Task ActiveAwake(CommandContext ctx)
+        {
+            var interactivity = Program.Client.GetInteractivity();
+
+            var messageToReact = await interactivity.WaitForReactionAsync(message => message.Message.Id == 1240175731472859136);
+            if (messageToReact.Result.Message.Id == 1240175731472859136)
+            {
+                await ctx.Channel.SendMessageAsync($"{ctx.User.Username} used the emoji with name {messageToReact.Result.Emoji.Name}");
+            }
         }
 
 
